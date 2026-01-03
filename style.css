@@ -1,72 +1,86 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   height: 100vh;
+  background: linear-gradient(135deg, #ffd6e8, #fff1f7);
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #ffd6e8, #fff1f7);
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
 }
 
+/* === ENVELOPE === */
 .envelope {
   position: relative;
   width: 260px;
   height: 180px;
   cursor: pointer;
-  transition: transform 0.5s;
+  transition: transform 0.5s ease;
 }
 
 .envelope.open {
   transform: scale(1.05);
 }
 
+/* back of envelope */
 .back {
   position: absolute;
   width: 100%;
   height: 100%;
   background: #ff9fba;
-  border-radius: 8px;
+  border-radius: 12px;
   z-index: 1;
 }
 
+/* front flap */
 .front {
   position: absolute;
   width: 100%;
   height: 100%;
   background: #ff7fa2;
   clip-path: polygon(0 0, 100% 0, 50% 55%);
-  z-index: 3;
+  z-index: 2;
+  pointer-events: none;
 }
 
+/* letter */
 .letter {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 240px;
-  height: 160px;
+  top: 12px;
+  left: 12px;
+  width: 236px;
+  height: 156px;
   background: white;
-  border-radius: 6px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   transform: translateY(40px);
   opacity: 0;
-  transition: 0.8s ease;
-  z-index: 2;
+  transition: all 0.8s ease;
+  z-index: 4;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
+/* when opened */
 .envelope.open .letter {
   transform: translateY(-70px);
   opacity: 1;
 }
 
+/* text */
 .letter p {
-  font-size: 20px;
-  color: #ff5c8a;
+  font-size: 22px;
+  color: #ff4f8b;
+  font-weight: 600;
+  margin: 0;
 }
 
-/* hearts */
+/* === HEARTS === */
 .heart {
   position: fixed;
   bottom: -20px;
@@ -79,12 +93,12 @@ body {
 
 .heart::before,
 .heart::after {
-  content: '';
+  content: "";
+  position: absolute;
   width: 14px;
   height: 14px;
   background: pink;
   border-radius: 50%;
-  position: absolute;
 }
 
 .heart::before {
