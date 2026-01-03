@@ -7,36 +7,27 @@
 </head>
 <body>
 
-<audio id="music" 
-  src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2a9b2f9a39.mp3?filename=love-letter-112194.mp3">
-</audio>
-
-<div class="envelope" onclick="openEnvelope()">
+<div class="envelope" id="env">
   <div class="back"></div>
+
   <div class="letter">
-    <p>i love u pretty 🤍</p>
+    <p>i love u 🤍</p>
   </div>
+
   <div class="front"></div>
 </div>
 
-<script>
-  function openEnvelope() {
-    const env = document.querySelector(".envelope");
-    env.classList.toggle("open");
-    document.getElementById("music").play();
-    createHearts();
-  }
+<audio id="music"
+  src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2a9b2f9a39.mp3">
+</audio>
 
-  function createHearts() {
-    for (let i = 0; i < 15; i++) {
-      let heart = document.createElement("div");
-      heart.className = "heart";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 2 + Math.random() * 3 + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }
-  }
+<script>
+  const env = document.getElementById("env");
+  env.addEventListener("click", () => {
+    env.classList.add("open");
+    const music = document.getElementById("music");
+    music.play().catch(() => {});
+  });
 </script>
 
 </body>
