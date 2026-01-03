@@ -7,17 +7,33 @@
 </head>
 <body>
 
+<audio id="music" src="music.mp3"></audio>
+
 <div class="envelope" onclick="openEnvelope()">
   <div class="back"></div>
   <div class="letter">
-    <p>i love u 🤍</p>
+    <p>i love u, Alice 🤍</p>
   </div>
   <div class="front"></div>
 </div>
 
 <script>
   function openEnvelope() {
-    document.querySelector(".envelope").classList.toggle("open");
+    const env = document.querySelector(".envelope");
+    env.classList.toggle("open");
+    document.getElementById("music").play();
+    createHearts();
+  }
+
+  function createHearts() {
+    for (let i = 0; i < 15; i++) {
+      let heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 2 + Math.random() * 3 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
   }
 </script>
 
